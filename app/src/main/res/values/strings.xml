@@ -6,4 +6,13 @@
     <string name="login">login</string>
     <string name="userName">User Name</string>
     <string name="password">Password</string>
+    <string name="client_persist">Client Persistence</string>
+    <string name="street">Street</string>
+    <string name="phone">Phone</string>
+    <string name="age">Age</string>
+    <string name="Name">Name</string>
+    <string name="persist">Create or Update</string>
+    <string name="clear">Clear</string>
+    <string name="action_save">Save</string>
+    <string name="action_clear">Clear</string>
 </resources>

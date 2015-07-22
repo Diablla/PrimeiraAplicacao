@@ -1,10 +1,13 @@
-package com.cast.amanda.primeiraaplicacao;
+package com.cast.amanda.primeiraaplicacao.Controller;
 
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.cast.amanda.primeiraaplicacao.Model.Entities.Client;
+import com.cast.amanda.primeiraaplicacao.R;
 
 import java.util.List;
 
