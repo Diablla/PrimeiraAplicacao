@@ -15,4 +15,17 @@
     <string name="clear">Clear</string>
     <string name="action_save">Save</string>
     <string name="action_clear">Clear</string>
+    <string name="required_field">Required Field</string>
+    <string name="success">Success</string>
+    <string name="action_add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="cep">cep</string>
+    <string name="findAdress">Find Address</string>
+    <string name="TipoLogradouro">Logradouro</string>
+    <string name="Logradouro">Logradouro</string>
+    <string name="Bairro">Bairro</string>
+    <string name="Cidade">Cidade</string>
+    <string name="Estado">Estado</string>
+    <string name="Loading">Loading...</string>
 </resources>

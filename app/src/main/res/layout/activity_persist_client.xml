@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
     android:theme="@android:style/Theme.Black"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -25,12 +29,54 @@
         android:layout_height="wrap_content"
         android:hint="@string/phone"
         android:inputType="number"
-        />
+    />
     <EditText
-        android:id="@+id/persistTextStreet"
+        android:id="@+id/persistTextCep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/street"
+        android:hint="@string/cep"
         />
-
+    <TextView
+        android:id="@+id/textFindAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/findAdress"
+        />
+    <EditText
+        android:id="@+id/editTextTipoLogradouro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/TipoLogradouro"
+        />
+    <EditText
+        android:id="@+id/editTextLogradouro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Logradouro"
+        />
+    <EditText
+        android:id="@+id/editTextBairro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Bairro"
+        />
+    <EditText
+        android:id="@+id/editTextTipoCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Cidade"
+        />
+    <EditText
+        android:id="@+id/editTextTipoEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Estado"
+        />
+    <Button
+        android:id="@+id/btnCEP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/cep"
+        />
 </LinearLayout>
+</ScrollView>

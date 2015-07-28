@@ -14,4 +14,14 @@
     <string name="Name">Nome</string>
     <string name="persist">Criar ou Atualizar</string>
     <string name="clear">Limpar</string>
+    <string name="required_field">Campo Obrigatório</string>
+    <string name="success">Sucesso</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Deletar</string>
+    <string name="findAdress">Find Address</string>
+    <string name="Logradouro">Logradouro</string>
+    <string name="Bairro">Bairro</string>
+    <string name="Cidade">Cidade</string>
+    <string name="Estado">Estado</string>
+    <string name="Loading">Carregando...</string>
 </resources>

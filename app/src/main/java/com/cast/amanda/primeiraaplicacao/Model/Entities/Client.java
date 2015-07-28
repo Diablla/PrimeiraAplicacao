@@ -1,18 +1,64 @@
 package com.cast.amanda.primeiraaplicacao.Model.Entities;
 
-import com.cast.amanda.primeiraaplicacao.Model.Persistence.MemoryClientRepository;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import com.cast.amanda.primeiraaplicacao.Model.Persistence.MemoryClientRepository;
+import com.cast.amanda.primeiraaplicacao.Model.Persistence.SQLiteClientRepository;
+import com.cast.amanda.primeiraaplicacao.Model.Services.ClientAdress;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Amanda on 20/07/2015.
  */
-public class Client {
+public class Client implements Serializable, Parcelable{
 
-    private  String name;
+    private Integer id;
+    private String name;
     private Integer age;
     private Integer phone;
-    private String street;
+    private ClientAdress clientAdress;
+
+    public Client(Parcel in){
+        super();
+        readToParcel(in);
+    }
+
+    public Client(){
+        super();
+    }
+
+   public static final Parcelable.Creator<Client> CREATOR = new Parcelable.Creator<Client>(){
+                @Override
+                public Client createFromParcel(Parcel source) {
+                    return new Client(source);
+                }
+
+                public Client[] newArray(int size){
+                    return new Client[size];
+                }
+   };
+
+    public ClientAdress getClientAdress() {
+        if (clientAdress == null) {
+            clientAdress = new ClientAdress();
+        }
+        return clientAdress;
+    }
+
+    public void setClientAdress(ClientAdress clientAdress) {
+        this.clientAdress = clientAdress;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -38,12 +84,8 @@ public class Client {
         this.phone = phone;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
+    public static Creator<Client> getCREATOR() {
+        return CREATOR;
     }
 
     @Override
@@ -53,33 +95,63 @@ public class Client {
 
         Client client = (Client) o;
 
-        if (name != null ? !name.equals(client.name) : client.name != null) return false;
-        if (age != null ? !age.equals(client.age) : client.age != null) return false;
-        if (phone != null ? !phone.equals(client.phone) : client.phone != null) return false;
-        return !(street != null ? !street.equals(client.street) : client.street != null);
+        if (!id.equals(client.id)) return false;
+        if (!name.equals(client.name)) return false;
+        if (!age.equals(client.age)) return false;
+        if (!phone.equals(client.phone)) return false;
+        return clientAdress.equals(client.clientAdress);
 
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (street != null ? street.hashCode() : 0);
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + age.hashCode();
+        result = 31 * result + phone.hashCode();
+        result = 31 * result + clientAdress.hashCode();
         return result;
     }
 
     public void save(){
         //vai pegar uma instancia unica / save exige um cliente / this indica que quer salvar o proprio cliente
-        MemoryClientRepository.getInstance().save(this);
+        SQLiteClientRepository.getInstance().save(this);
     }
 
     public static List<Client> getAll(){
-        return MemoryClientRepository.getInstance().getAll();
+        return SQLiteClientRepository.getInstance().getAll();
     }
 
     @Override
     public String toString() {
-        return "Nome "+this.getName() + ", Idade "+this.getAge() +", Telefone " + this.getPhone() +  ", Rua " + this.getStreet();
+        return "Nome "+this.getName() + ", Idade "+this.getAge() +", Telefone " + this.getPhone();
     }
+
+    public void delete() {
+        SQLiteClientRepository.getInstance().delete(this);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id == null ? -1 : id);
+        dest.writeString(name == null ? "" : name);
+        dest.writeInt(age == null ? -1 : age);
+        dest.writeInt(phone == null ? -1 : phone);
+    }
+
+    private void readToParcel(Parcel in) {
+        int partialId = in.readInt();
+        id = partialId == -1 ? null : partialId;
+        name = in.readString();
+        int partialAge = in.readInt();
+        age = partialAge == -1 ? null : partialAge;
+        int partialPhone = in.readInt();
+        phone = partialPhone == -1 ? null : partialPhone;
+    }
+
 }
