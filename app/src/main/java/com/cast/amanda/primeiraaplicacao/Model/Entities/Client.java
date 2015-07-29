@@ -95,21 +95,21 @@ public class Client implements Serializable, Parcelable{
 
         Client client = (Client) o;
 
-        if (!id.equals(client.id)) return false;
-        if (!name.equals(client.name)) return false;
-        if (!age.equals(client.age)) return false;
-        if (!phone.equals(client.phone)) return false;
-        return clientAdress.equals(client.clientAdress);
+        if (id != null ? !id.equals(client.id) : client.id != null) return false;
+        if (name != null ? !name.equals(client.name) : client.name != null) return false;
+        if (age != null ? !age.equals(client.age) : client.age != null) return false;
+        if (phone != null ? !phone.equals(client.phone) : client.phone != null) return false;
+        return !(clientAdress != null ? !clientAdress.equals(client.clientAdress) : client.clientAdress != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + age.hashCode();
-        result = 31 * result + phone.hashCode();
-        result = 31 * result + clientAdress.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (clientAdress != null ? clientAdress.hashCode() : 0);
         return result;
     }
 
@@ -142,6 +142,7 @@ public class Client implements Serializable, Parcelable{
         dest.writeString(name == null ? "" : name);
         dest.writeInt(age == null ? -1 : age);
         dest.writeInt(phone == null ? -1 : phone);
+        dest.writeParcelable(clientAdress, flags);
     }
 
     private void readToParcel(Parcel in) {
@@ -152,6 +153,7 @@ public class Client implements Serializable, Parcelable{
         age = partialAge == -1 ? null : partialAge;
         int partialPhone = in.readInt();
         phone = partialPhone == -1 ? null : partialPhone;
+        clientAdress = in.readParcelable(ClientAdress.class.getClassLoader());
     }
 
 }

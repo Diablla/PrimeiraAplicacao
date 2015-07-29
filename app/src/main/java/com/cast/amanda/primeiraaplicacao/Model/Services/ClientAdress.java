@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by Amanda on 27/07/2015.
  */
-public class ClientAdress implements Parcelable{
+public class ClientAdress implements Parcelable {
 
     private String cep;
     private String tipoDeLogradouro;
@@ -95,4 +95,16 @@ public class ClientAdress implements Parcelable{
         Cidade = in.readString();
         estado = in.readString();
     }
+
+    public static final Parcelable.Creator<ClientAdress> CREATOR = new Parcelable.Creator<ClientAdress>(){
+        @Override
+        public ClientAdress createFromParcel(Parcel source) {
+            return new ClientAdress(source);
+        }
+
+        public ClientAdress[] newArray(int size){
+            return new ClientAdress[size];
+        }
+    };
+
 }

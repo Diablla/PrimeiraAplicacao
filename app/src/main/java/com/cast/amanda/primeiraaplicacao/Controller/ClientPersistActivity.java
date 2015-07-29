@@ -28,6 +28,7 @@ public class ClientPersistActivity extends AppCompatActivity {
     private EditText editTextAge;
     private EditText editTextPhone;
     private Client client;
+
     private EditText editTextTipoLogradouro;
     private EditText editTextLogradouro;
     private EditText editTextBairro;
@@ -86,7 +87,9 @@ public class ClientPersistActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.menuSave){
-            if(FormHelper.requireValidate(ClientPersistActivity.this, editTextAge, editTextName, editTextPhone, persistTextCep)){
+            if(FormHelper.requireValidate(ClientPersistActivity.this, editTextAge, editTextName,
+                    editTextPhone, persistTextCep, editTextTipoLogradouro, editTextLogradouro,
+                    editTextBairro, editTextTipoCidade, editTextTipoEstado)){
                 Client client = bindClient();
                 client.save();
                 Toast.makeText(ClientPersistActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
@@ -105,11 +108,19 @@ public class ClientPersistActivity extends AppCompatActivity {
     private Client bindClient(){
         if (client == null) {
             client = new Client();
+            ClientAdress clientAdress = new ClientAdress();
+            client.setClientAdress(clientAdress);
         }
         client.setName(editTextName.getText().toString());
         client.setAge(Integer.valueOf(editTextAge.getText().toString()));
         client.setPhone(Integer.valueOf(editTextPhone.getText().toString()));
+
         client.getClientAdress().setCep(persistTextCep.getText().toString());
+        client.getClientAdress().setBairro(editTextBairro.getText().toString());
+        client.getClientAdress().setCidade(editTextTipoCidade.getText().toString());
+        client.getClientAdress().setEstado(editTextTipoEstado.getText().toString());
+        client.getClientAdress().setTipoDeLogradouro(editTextTipoLogradouro.getText().toString());
+        client.getClientAdress().setLogradouro(editTextLogradouro.getText().toString());
 
         return client;
     }
@@ -118,6 +129,12 @@ public class ClientPersistActivity extends AppCompatActivity {
         editTextName.setText(client.getName());
         editTextAge.setText(client.getAge().toString());
         editTextPhone.setText(client.getPhone().toString());
+        persistTextCep.setText(client.getClientAdress().getCep());
+        editTextTipoLogradouro.setText(client.getClientAdress().getTipoDeLogradouro());
+        editTextBairro.setText(client.getClientAdress().getBairro());
+        editTextTipoCidade.setText(client.getClientAdress().getCidade());
+        editTextLogradouro.setText(client.getClientAdress().getLogradouro());
+        editTextTipoEstado.setText(client.getClientAdress().getEstado());
     }
 
     private ProgressDialog progressDialog;
