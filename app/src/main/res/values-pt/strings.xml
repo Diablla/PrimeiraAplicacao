@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Primeira Aplicacao</string>
-
     <string name="hello_world">Olá mundo!</string>
     <string name="action_settings">Configurações</string>
     <string name="login">Entrar</string>
     <string name="userName">Usuário</string>
     <string name="password">Senha</string>
     <string name="client_persist">Persistencia de Cliente</string>
-    <string name="street">Rua</string>
     <string name="phone">Telefone</string>
     <string name="age">Idade</string>
     <string name="Name">Nome</string>
@@ -16,12 +14,17 @@
     <string name="clear">Limpar</string>
     <string name="required_field">Campo Obrigatório</string>
     <string name="success">Sucesso</string>
+    <string name="action_add">Adicionar</string>
     <string name="edit">Editar</string>
     <string name="delete">Deletar</string>
-    <string name="findAdress">Find Address</string>
+    <string name="findAdress">Encontrar Endereço</string>
     <string name="Logradouro">Logradouro</string>
+    <string name="TipoLogradouro">Tipe Logradouro</string>
     <string name="Bairro">Bairro</string>
     <string name="Cidade">Cidade</string>
     <string name="Estado">Estado</string>
     <string name="Loading">Carregando...</string>
+    <string name="cep">CEP</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_clear">Limpar</string>
 </resources>
