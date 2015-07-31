@@ -27,4 +27,6 @@
     <string name="cep">CEP</string>
     <string name="action_save">Salvar</string>
     <string name="action_clear">Limpar</string>
+    <string name="message_error_login">Entre com um usuário válido</string>
+    <string name="message_error_invalid_cep">CEP Inválido! Entre com um CEP válido para pesquisar.</string>
 </resources>

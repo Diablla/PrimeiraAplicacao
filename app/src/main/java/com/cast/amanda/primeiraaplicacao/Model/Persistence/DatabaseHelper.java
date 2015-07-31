@@ -8,7 +8,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
     private static final String BANCO_DADOS = "MY_DATABASE";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
 
     public DatabaseHelper(Context context){
 
@@ -18,6 +18,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ClientContract.getSqlCreateTable());
+        db.execSQL(LoginContract.getSqlCreateTableLogin());
+
+        db.execSQL("insert into login (username, password) values ('admin', 'admin')");
+
     }
 
     @Override

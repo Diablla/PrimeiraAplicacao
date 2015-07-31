@@ -28,4 +28,6 @@
     <string name="Loading">Loading...</string>
     <string name="action_save">Save</string>
     <string name="action_clear">Clear</string>
+    <string name="message_error_login">Choose a valid user!</string>
+    <string name="message_error_invalid_cep">Invalid CEP! Enter with a valid CEP.</string>
 </resources>

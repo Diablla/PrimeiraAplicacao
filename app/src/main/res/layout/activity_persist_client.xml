@@ -72,10 +72,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/Estado" />
 
-        <Button
-            android:id="@+id/btnCEP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/cep" />
+
     </LinearLayout>
 </ScrollView>

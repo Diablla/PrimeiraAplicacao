@@ -11,9 +11,6 @@ import com.cast.amanda.primeiraaplicacao.util.AppUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Amanda on 23/07/2015.
- */
 public class SQLiteClientRepository implements ClientRepository {
 
     private static SQLiteClientRepository singletonInstance;

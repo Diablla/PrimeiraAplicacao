@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +42,6 @@ public class ClientPersistActivity extends AppCompatActivity {
     private EditText editTextTipoCidade;
     private EditText editTextTipoEstado;
     private EditText persistTextCep;
-    private Button btnCEP;
 
 
     @Override
@@ -73,14 +73,34 @@ public class ClientPersistActivity extends AppCompatActivity {
         editTextAge = (EditText) findViewById(R.id.persistTextAge);
         editTextPhone = (EditText) findViewById(R.id.persistTextPhone);
         persistTextCep = (EditText) findViewById(R.id.persistTextCep);
+        persistTextCep.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_find, 0);
+        persistTextCep.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (persistTextCep.getRight() - persistTextCep.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        if(!TextUtils.isEmpty( persistTextCep.getText())){
+                            new getAddressByCep().execute(persistTextCep.getText().toString());
+                        }
+                        else {
+                          Toast.makeText(ClientPersistActivity.this, getString(R.string.message_error_invalid_cep), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+                return false;
+            }
+        });
 
         editTextTipoLogradouro = (EditText) findViewById(R.id.editTextTipoLogradouro);
         editTextLogradouro = (EditText) findViewById(R.id.editTextLogradouro);
         editTextBairro = (EditText) findViewById(R.id.editTextBairro);
         editTextTipoCidade = (EditText) findViewById(R.id.editTextTipoCidade);
         editTextTipoEstado = (EditText) findViewById(R.id.editTextTipoEstado);
-
-        bindButtonFindCep();
 
         client = new Client();
         Bundle extras = getIntent().getExtras();
@@ -91,17 +111,6 @@ public class ClientPersistActivity extends AppCompatActivity {
             }
             bindForm(client);
         }
-    }
-
-    private void bindButtonFindCep() {
-        btnCEP = (Button) findViewById(R.id.btnCEP);
-        btnCEP.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                new getAddressByCep().execute(persistTextCep.getText().toString());
-            }
-        });
     }
 
     @Override
@@ -130,6 +139,7 @@ public class ClientPersistActivity extends AppCompatActivity {
         return true;
     }
 
+    //pega no cliente e seta no form
     private Client bindClient() {
         if (client == null) {
             client = new Client();
@@ -150,6 +160,7 @@ public class ClientPersistActivity extends AppCompatActivity {
         return client;
     }
 
+    //pega no form e seta no cliente
     private void bindForm(Client client) {
         editTextName.setText(client.getName());
         editTextName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_edittext_client, 0);
@@ -197,7 +208,12 @@ public class ClientPersistActivity extends AppCompatActivity {
     private class getAddressByCep extends AsyncTask<String, Void, ClientAdress> {
         @Override
         protected ClientAdress doInBackground(String... params) {
-            return CepService.getAddressBy(params[0]);
+            try {
+                return CepService.getAddressBy(params[0]);
+            }
+            catch (Exception e){
+                return null;
+            }
         }
 
         @Override
@@ -209,13 +225,18 @@ public class ClientPersistActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ClientAdress clientAdress) {
-            super.onPostExecute(clientAdress);
-            client.setClientAdress(clientAdress);
-            editTextTipoLogradouro.setText(clientAdress.getTipoDeLogradouro());
-            editTextLogradouro.setText(clientAdress.getLogradouro());
-            editTextTipoCidade.setText(clientAdress.getCidade());
-            editTextTipoEstado.setText(clientAdress.getEstado());
-            editTextBairro.setText(clientAdress.getBairro());
+            if(clientAdress != null){
+                super.onPostExecute(clientAdress);
+                client.setClientAdress(clientAdress);
+                editTextTipoLogradouro.setText(clientAdress.getTipoDeLogradouro());
+                editTextLogradouro.setText(clientAdress.getLogradouro());
+                editTextTipoCidade.setText(clientAdress.getCidade());
+                editTextTipoEstado.setText(clientAdress.getEstado());
+                editTextBairro.setText(clientAdress.getBairro());
+            }
+           else{
+                Toast.makeText(ClientPersistActivity.this,"Erro de conexão.", Toast.LENGTH_LONG).show();
+            }
             progressDialog.dismiss();
         }
     }

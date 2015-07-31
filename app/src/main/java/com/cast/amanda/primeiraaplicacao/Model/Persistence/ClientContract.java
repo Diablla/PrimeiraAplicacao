@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ClientContract {
 
+
     public static final String TABLE = "client";
     public static final String ID = "id";
     public static final String NAME = "name";
@@ -43,6 +44,7 @@ public class ClientContract {
         sql.append(ESTADO + " TEXT,  ");
         sql.append(BAIRRO + " TEXT  ");
         sql.append(" ); ");
+
         return sql.toString();
     }
 
