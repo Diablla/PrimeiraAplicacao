@@ -13,64 +13,23 @@
             android:id="@+id/persistTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Name"
+            android:hint="@string/app_name"
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/persistTextAge"
+            android:id="@+id/persistAbout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/age"
-            android:inputType="number" />
+            android:hint="@string/About"
+            android:inputType="text" />
 
         <EditText
-            android:id="@+id/persistTextPhone"
+            android:id="@+id/persistMedicalUse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/phone"
-            android:inputType="number" />
+            android:hint="@string/MedicalUse"
+            android:inputType="text" />
 
-        <EditText
-            android:id="@+id/persistTextCep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/cep" />
-
-        <TextView
-            android:id="@+id/textFindAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/findAdress" />
-
-        <EditText
-            android:id="@+id/editTextTipoLogradouro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/TipoLogradouro" />
-
-        <EditText
-            android:id="@+id/editTextLogradouro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/Logradouro" />
-
-        <EditText
-            android:id="@+id/editTextBairro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/Bairro" />
-
-        <EditText
-            android:id="@+id/editTextTipoCidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/Cidade" />
-
-        <EditText
-            android:id="@+id/editTextTipoEstado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/Estado" />
 
 
     </LinearLayout>

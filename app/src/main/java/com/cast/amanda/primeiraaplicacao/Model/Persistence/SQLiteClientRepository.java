@@ -3,9 +3,8 @@ package com.cast.amanda.primeiraaplicacao.Model.Persistence;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 
-import com.cast.amanda.primeiraaplicacao.Model.Entities.Client;
+import com.cast.amanda.primeiraaplicacao.Model.Entities.Herbs;
 import com.cast.amanda.primeiraaplicacao.util.AppUtil;
 
 import java.util.ArrayList;
@@ -27,17 +26,17 @@ public class SQLiteClientRepository implements ClientRepository {
     }
 
     @Override
-    public void save(Client client) {
+    public void save(Herbs herbs) {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getWritableDatabase();
-        ContentValues values = ClientContract.getContentValues(client);
+        ContentValues values = ClientContract.getContentValues(herbs);
 
-        if(client.getId() == null){
+        if(herbs.getId() == null){
             db.insert(ClientContract.TABLE, null, values);
         } else {
-            values.put(ClientContract.ID, client.getId());
+            values.put(ClientContract.ID, herbs.getId());
             String where = ClientContract.ID + " = ?";
-            String[] args = {client.getId().toString()};
+            String[] args = {herbs.getId().toString()};
             db.update(ClientContract.TABLE, values, where, args);
         }
 
@@ -46,24 +45,24 @@ public class SQLiteClientRepository implements ClientRepository {
     }
 
     @Override
-    public List<Client> getAll() {
+    public List<Herbs> getAll() {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.query(ClientContract.TABLE, ClientContract.COLUMNS, null, null, null, null, ClientContract.NAME);
-        List<Client> clients = new ArrayList<>();
+        List<Herbs> herbses = new ArrayList<>();
 
-        clients = ClientContract.bindList(cursor);
+        herbses = ClientContract.bindList(cursor);
         db.close();
         helper.close();
-        return clients;
+        return herbses;
     }
 
     @Override
-    public void delete(Client client) {
+    public void delete(Herbs herbs) {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getWritableDatabase();
         String where = ClientContract.ID + " = ? ";
-        String[] args = {client.getId().toString()};
+        String[] args = {herbs.getId().toString()};
 
         db.delete(ClientContract.TABLE, where, args);
         db.close();

@@ -1,6 +1,6 @@
 package com.cast.amanda.primeiraaplicacao.Model.Persistence;
 
-import com.cast.amanda.primeiraaplicacao.Model.Entities.Client;
+import com.cast.amanda.primeiraaplicacao.Model.Entities.Herbs;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import java.util.List;
     //PROGRAME PARA A INTERFACE E NAO PARA A IMPLEMENTACAO
 public interface ClientRepository {
 
-    void save(Client client);
-    List<Client> getAll();
-    void delete(Client client);
+    void save(Herbs herbs);
+    List<Herbs> getAll();
+    void delete(Herbs herbs);
 
 }

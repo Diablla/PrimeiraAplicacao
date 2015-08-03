@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cura pela Floresta</string>
-    <string name="hello_world">Olá mundo!</string>
+    <string name="medical_list">Remédios</string>
     <string name="action_settings">Configurações</string>
     <string name="login">Entrar</string>
     <string name="userName">Usuário</string>
@@ -10,6 +10,8 @@
     <string name="phone">Telefone</string>
     <string name="age">Idade</string>
     <string name="Name">Nome</string>
+    <string name="About">Sobre</string>
+    <string name="MedicalUse">Uso Medicinal</string>
     <string name="persist">Criar ou Atualizar</string>
     <string name="clear">Limpar</string>
     <string name="required_field">Campo Obrigatório</string>

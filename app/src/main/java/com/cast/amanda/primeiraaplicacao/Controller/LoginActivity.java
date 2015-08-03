@@ -40,7 +40,7 @@ public class LoginActivity  extends AppCompatActivity {
                 login.setUsername(editTextUserName.getText().toString());
                 login.setPassword(editTextPassord.getText().toString());
                 if (validateLogin(login)) {
-                    Intent goToMainActivity = new Intent(LoginActivity.this, ClientListActivity.class);
+                    Intent goToMainActivity = new Intent(LoginActivity.this, HerbsListActivity.class);
                     startActivity(goToMainActivity);
                 }  else{
                     Toast.makeText(LoginActivity.this, getString(R.string.message_error_login), Toast.LENGTH_LONG).show();

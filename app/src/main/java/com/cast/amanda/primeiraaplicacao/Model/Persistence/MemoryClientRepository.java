@@ -1,6 +1,6 @@
 package com.cast.amanda.primeiraaplicacao.Model.Persistence;
 
-import com.cast.amanda.primeiraaplicacao.Model.Entities.Client;
+import com.cast.amanda.primeiraaplicacao.Model.Entities.Herbs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +10,14 @@ import java.util.List;
  */
 public class MemoryClientRepository implements ClientRepository{
 
-    private List<Client> clients;
+    private List<Herbs> herbses;
     private static MemoryClientRepository singletonInstance;
     private MemoryClientRepository(){
         super();
-        clients = new ArrayList<Client>();
+        herbses = new ArrayList<Herbs>();
     }
 
-    //a vantagem é que caso queiramos fazer tratamento ou atribuir comportamento antes de instanciar a classe, conseguiríamos. Se fosse o construtor, pelo menos teriamos que ter chamado o super. Super sempre tem que vir na primeira linha.
+    //a vantagem ï¿½ que caso queiramos fazer tratamento ou atribuir comportamento antes de instanciar a classe, conseguirï¿½amos. Se fosse o construtor, pelo menos teriamos que ter chamado o super. Super sempre tem que vir na primeira linha.
     //perguntar sobre a vantagem do get Instance depois / ultima parte n entendi;
 
     public static ClientRepository getInstance(){
@@ -28,18 +28,18 @@ public class MemoryClientRepository implements ClientRepository{
     }
 
     @Override
-    public void save(Client client) {
-        clients.add(client);
+    public void save(Herbs herbs) {
+        herbses.add(herbs);
     }
 
     @Override
-    public List<Client> getAll() {
-        return clients;
+    public List<Herbs> getAll() {
+        return herbses;
     }
 
     @Override
-    public void delete(Client client) {
-        clients.remove(client);
+    public void delete(Herbs herbs) {
+        herbses.remove(herbs);
     }
 
 }

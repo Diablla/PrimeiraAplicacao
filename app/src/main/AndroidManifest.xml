@@ -13,13 +13,13 @@
         android:theme="@style/AppThemeMaterial" >
 
         <activity
-            android:name=".Controller.ClientListActivity"
+            android:name=".Controller.HerbsListActivity"
             android:label="@string/app_name" >
         </activity>
 
         <activity
-            android:name=".Controller.ClientPersistActivity"
-            android:label="@string/client_persist" >
+            android:name=".Controller.HerbsPersistActivity"
+            android:label="@string/app_name" >
         </activity>
 
         <activity
