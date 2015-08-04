@@ -37,9 +37,4 @@ public class MemoryClientRepository implements ClientRepository{
         return herbses;
     }
 
-    @Override
-    public void delete(Herbs herbs) {
-        herbses.remove(herbs);
-    }
-
 }

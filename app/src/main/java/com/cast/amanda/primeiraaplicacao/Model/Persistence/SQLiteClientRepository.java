@@ -29,15 +29,15 @@ public class SQLiteClientRepository implements ClientRepository {
     public void save(Herbs herbs) {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getWritableDatabase();
-        ContentValues values = ClientContract.getContentValues(herbs);
+        ContentValues values = HerbsContract.getContentValues(herbs);
 
         if(herbs.getId() == null){
-            db.insert(ClientContract.TABLE, null, values);
+            db.insert(HerbsContract.TABLE, null, values);
         } else {
-            values.put(ClientContract.ID, herbs.getId());
-            String where = ClientContract.ID + " = ?";
+            values.put(HerbsContract.ID, herbs.getId());
+            String where = HerbsContract.ID + " = ?";
             String[] args = {herbs.getId().toString()};
-            db.update(ClientContract.TABLE, values, where, args);
+            db.update(HerbsContract.TABLE, values, where, args);
         }
 
         db.close();
@@ -48,25 +48,13 @@ public class SQLiteClientRepository implements ClientRepository {
     public List<Herbs> getAll() {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.query(ClientContract.TABLE, ClientContract.COLUMNS, null, null, null, null, ClientContract.NAME);
+        Cursor cursor = db.query(HerbsContract.TABLE, HerbsContract.COLUMNS, null, null, null, null, HerbsContract.NAME);
         List<Herbs> herbses = new ArrayList<>();
 
-        herbses = ClientContract.bindList(cursor);
+        herbses = HerbsContract.bindList(cursor);
         db.close();
         helper.close();
         return herbses;
     }
 
-    @Override
-    public void delete(Herbs herbs) {
-        DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String where = ClientContract.ID + " = ? ";
-        String[] args = {herbs.getId().toString()};
-
-        db.delete(ClientContract.TABLE, where, args);
-        db.close();
-        helper.close();
-
-    }
 }

@@ -7,7 +7,6 @@
 
 
     <TextView
-        android:textColor="@android:color/white"
         android:textSize="20sp"
         android:id="@+id/textViewName"
         android:layout_width="0dp"

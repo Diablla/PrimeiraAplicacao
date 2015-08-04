@@ -13,6 +13,5 @@ public interface ClientRepository {
 
     void save(Herbs herbs);
     List<Herbs> getAll();
-    void delete(Herbs herbs);
 
 }

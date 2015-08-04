@@ -4,9 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
     <item
-        android:id="@+id/menuAddLista"
+        android:id="@+id/menuShare"
         app:showAsAction="always"
-        android:title="@string/action_add" android:icon="@drawable/ic_add">
-
+        android:title="@string/action_add" android:icon="@drawable/ic_share">
     </item>
+
+    <item
+        android:id="@+id/menuFavorite"
+        app:showAsAction="always"
+        android:title="@string/action_add" android:icon="@drawable/ic_save">
+    </item>
+
 </menu>

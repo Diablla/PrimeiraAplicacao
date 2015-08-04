@@ -8,35 +8,25 @@ import com.cast.amanda.primeiraaplicacao.Model.Persistence.SQLiteClientRepositor
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by Amanda on 20/07/2015.
- */
 public class Herbs implements Serializable, Parcelable{
 
     private Integer id;
     private String name;
     private String about;
     private String medicalUse;
+    private boolean favorite;
 
-    public Herbs(Parcel in){
-        super();
-        readToParcel(in);
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 
     public Herbs(){
         super();
     }
-
-    public static final Parcelable.Creator<Herbs> CREATOR = new Parcelable.Creator<Herbs>(){
-        @Override
-        public Herbs createFromParcel(Parcel source) {
-            return new Herbs(source);
-        }
-
-        public Herbs[] newArray(int size){
-            return new Herbs[size];
-        }
-    };
 
     public Integer getId() {
         return id;
@@ -81,12 +71,12 @@ public class Herbs implements Serializable, Parcelable{
 
         Herbs herbs = (Herbs) o;
 
+        if (favorite != herbs.favorite) return false;
         if (id != null ? !id.equals(herbs.id) : herbs.id != null) return false;
         if (name != null ? !name.equals(herbs.name) : herbs.name != null) return false;
         if (about != null ? !about.equals(herbs.about) : herbs.about != null) return false;
-        if (medicalUse != null ? !medicalUse.equals(herbs.medicalUse) : herbs.medicalUse != null) return false;
+        return !(medicalUse != null ? !medicalUse.equals(herbs.medicalUse) : herbs.medicalUse != null);
 
-        return true;
     }
 
     @Override
@@ -95,6 +85,7 @@ public class Herbs implements Serializable, Parcelable{
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (about != null ? about.hashCode() : 0);
         result = 31 * result + (medicalUse != null ? medicalUse.hashCode() : 0);
+        result = 31 * result + (favorite ? 1 : 0);
         return result;
     }
 
@@ -112,9 +103,6 @@ public class Herbs implements Serializable, Parcelable{
         return "Nome "+this.getName() + ", Sobre "+this.getAbout() +", Uso Medicinal " + this.getMedicalUse();
     }
 
-    public void delete() {
-        SQLiteClientRepository.getInstance().delete(this);
-    }
 
     @Override
     public int describeContents() {
@@ -123,18 +111,28 @@ public class Herbs implements Serializable, Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id == null ? -1 : id);
-        dest.writeString(name == null ? "" : name);
-        dest.writeString(about == null ? "" : about);
-        dest.writeString(medicalUse == null ? "" : medicalUse);
+        dest.writeValue(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.about);
+        dest.writeString(this.medicalUse);
+        dest.writeByte(favorite ? (byte) 1 : (byte) 0);
     }
 
-    private void readToParcel(Parcel in) {
-        int partialId = in.readInt();
-        id = partialId == -1 ? null : partialId;
-        name = in.readString();
-        about = in.readString();
-        medicalUse = in.readString();
+    private Herbs(Parcel in) {
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.name = in.readString();
+        this.about = in.readString();
+        this.medicalUse = in.readString();
+        this.favorite = in.readByte() != 0;
     }
 
+    public static final Creator<Herbs> CREATOR = new Creator<Herbs>() {
+        public Herbs createFromParcel(Parcel source) {
+            return new Herbs(source);
+        }
+
+        public Herbs[] newArray(int size) {
+            return new Herbs[size];
+        }
+    };
 }
