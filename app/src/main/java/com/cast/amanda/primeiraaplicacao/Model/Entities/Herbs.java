@@ -3,7 +3,7 @@ package com.cast.amanda.primeiraaplicacao.Model.Entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.cast.amanda.primeiraaplicacao.Model.Persistence.SQLiteClientRepository;
+import com.cast.amanda.primeiraaplicacao.Model.Persistence.SQLiteHerbsRepository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -91,11 +91,11 @@ public class Herbs implements Serializable, Parcelable{
 
     public void save(){
         //vai pegar uma instancia unica / save exige um cliente / this indica que quer salvar o proprio cliente
-        SQLiteClientRepository.getInstance().save(this);
+        SQLiteHerbsRepository.getInstance().save(this);
     }
 
     public static List<Herbs> getAll(){
-        return SQLiteClientRepository.getInstance().getAll();
+        return SQLiteHerbsRepository.getInstance().getAll();
     }
 
     @Override

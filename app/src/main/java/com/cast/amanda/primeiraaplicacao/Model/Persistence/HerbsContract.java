@@ -11,7 +11,7 @@ import java.util.List;
 public class HerbsContract {
 
 
-    public static final String TABLE = "client";
+    public static final String TABLE = "herbs";
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String ABOUT = "about";
@@ -42,7 +42,7 @@ public class HerbsContract {
             herbs.setName(cursor.getString(cursor.getColumnIndex(HerbsContract.NAME)));
             herbs.setAbout(cursor.getString(cursor.getColumnIndex(HerbsContract.ABOUT)));
             herbs.setMedicalUse(cursor.getString(cursor.getColumnIndex(HerbsContract.MEDICALUSE)));
-            herbs.setFavorite(cursor.getInt(cursor.getColumnIndex(HerbsContract.FAVORITE)) == 1);
+            herbs.setFavorite(cursor.getInt(cursor.getColumnIndex(HerbsContract.FAVORITE)) == 1 || (cursor.getColumnIndex(HerbsContract.FAVORITE)) == 0);
 
             return herbs;
         }

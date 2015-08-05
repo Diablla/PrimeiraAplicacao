@@ -19,7 +19,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="cep">CEP</string>
-    <string name="findAdress">Find Address</string>
+    <string name="search">Search</string>
     <string name="TipoLogradouro">Type Logradouro</string>
     <string name="Logradouro">Logradouro</string>
     <string name="Bairro">Bairro</string>

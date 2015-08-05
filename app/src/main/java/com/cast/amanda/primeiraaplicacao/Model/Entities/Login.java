@@ -3,7 +3,6 @@ package com.cast.amanda.primeiraaplicacao.Model.Entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.cast.amanda.primeiraaplicacao.Model.Persistence.SQLiteClientRepository;
 import com.cast.amanda.primeiraaplicacao.Model.Persistence.SQLiteLoginRepository;
 
 import java.io.Serializable;

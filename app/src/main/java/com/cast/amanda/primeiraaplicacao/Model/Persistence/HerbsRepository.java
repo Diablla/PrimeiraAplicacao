@@ -9,7 +9,7 @@ import java.util.List;
  */
 //basicamente essa interface serao DAO
     //PROGRAME PARA A INTERFACE E NAO PARA A IMPLEMENTACAO
-public interface ClientRepository {
+public interface HerbsRepository {
 
     void save(Herbs herbs);
     List<Herbs> getAll();

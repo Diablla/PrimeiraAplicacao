@@ -1,25 +1,19 @@
 package com.cast.amanda.primeiraaplicacao.Controller;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ContextMenu;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.cast.amanda.primeiraaplicacao.Model.Entities.Herbs;
 import com.cast.amanda.primeiraaplicacao.R;
 import com.melnykov.fab.FloatingActionButton;
-
-import org.apache.http.protocol.HTTP;
 
 import java.util.List;
 
@@ -30,15 +24,23 @@ public class HerbsListActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
 
     private Herbs herbs;
-    ListView listViewClients;
+    ListView listViewHerbs;
     private FloatingActionButton fabAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.client_list_menu);
+        setContentView(R.layout.herbs_list_menu);
 
-        bindClientList();
+        bindHerbsList();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.getMenuInflater().inflate(R.menu.menu_lista, menu);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        //searchView.getQuery();
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -46,27 +48,27 @@ public class HerbsListActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void bindClientList() {
+    private void bindHerbsList() {
 
         List<Herbs> herbses = Herbs.getAll();
 
-        listViewClients = (ListView) findViewById(R.id.listViewClients);
+        listViewHerbs = (ListView) findViewById(R.id.listViewHerbs);
 
         final HerbsListAdapter clientAdapter = new HerbsListAdapter(HerbsListActivity.this, herbses);
 
-        listViewClients.setAdapter(clientAdapter);
+        listViewHerbs.setAdapter(clientAdapter);
 
 
-        listViewClients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewHerbs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object listItem = listViewClients.getItemAtPosition(position);
-                Intent intent = new Intent(HerbsListActivity.this, HerbsPersistActivity.class);
-                intent.putExtra(HerbsPersistActivity.CLIENT_PARAM, (Parcelable) listItem);
+                Object listItem = listViewHerbs.getItemAtPosition(position);
+                Intent intent = new Intent(HerbsListActivity.this, HerbsDetailsActivity.class);
+                intent.putExtra(HerbsDetailsActivity.CLIENT_PARAM, (Parcelable) listItem);
                 startActivity(intent);
             }
         });
 
-        registerForContextMenu(listViewClients);
+        registerForContextMenu(listViewHerbs);
     }
 }

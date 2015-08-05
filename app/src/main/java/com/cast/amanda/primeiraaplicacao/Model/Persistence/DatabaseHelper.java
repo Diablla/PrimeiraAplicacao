@@ -8,7 +8,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
     private static final String BANCO_DADOS = "MY_DATABASE";
-    private static final int VERSION = 2;
+    private static final int VERSION = 1;
 
     public DatabaseHelper(Context context){
 
@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(LoginContract.getSqlCreateTableLogin());
 
         db.execSQL("insert into login (username, password) values ('admin', 'admin')");
-        db.execSQL("insert into client (id, name, about, medicalUse, favorite) values (1, 'boldo', 'O nome científico do boldo é Peumus boldus Molina e pode ser comprada em lojas de produtos naturais e farmácias de manipulação.', 'O boldo serve para tratar má digestão, problemas do fígado, litíase biliar, gota, obstipação, cistite, flatulência, dor de cabeça e suores frio.', 1);");
+        db.execSQL("insert into herbs (id, name, about, medicalUse, favorite) values (1, 'boldo', 'O nome cientifico do boldo eh Peumus boldus Molina e pode ser comprada em lojas de produtos naturais e farmacias de manipulacao.', 'O boldo serve para tratar ma digestao, problemas do figado, litiase biliar, gota, obstipacao, cistite, flatulencia, dor de cabeca e suores frio.', 0);");
 
     }
 

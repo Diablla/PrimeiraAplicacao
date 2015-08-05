@@ -40,7 +40,7 @@ public class HerbsListAdapter extends BaseAdapter {
     //o que eh mostrado na tela
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = context.getLayoutInflater().inflate(R.layout.client_list_item, parent, false);
+        View view = context.getLayoutInflater().inflate(R.layout.herbs_list_item, parent, false);
         Herbs herbs = getItem(position);
 
         TextView textViewName = (TextView) view.findViewById(R.id.textViewName);

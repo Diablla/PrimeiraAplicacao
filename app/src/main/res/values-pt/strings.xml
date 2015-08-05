@@ -19,7 +19,7 @@
     <string name="action_add">Adicionar</string>
     <string name="edit">Editar</string>
     <string name="delete">Deletar</string>
-    <string name="findAdress">Encontrar Endereço</string>
+    <string name="search">Procurar</string>
     <string name="Logradouro">Logradouro</string>
     <string name="TipoLogradouro">Tipe Logradouro</string>
     <string name="Bairro">Bairro</string>

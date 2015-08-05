@@ -13,7 +13,7 @@ import com.cast.amanda.primeiraaplicacao.R;
 
 import org.apache.http.protocol.HTTP;
 
-public class HerbsPersistActivity extends AppCompatActivity {
+public class HerbsDetailsActivity extends AppCompatActivity {
 
     public static String CLIENT_PARAM = "CLIENT_PARAM";
     private TextView txtName;

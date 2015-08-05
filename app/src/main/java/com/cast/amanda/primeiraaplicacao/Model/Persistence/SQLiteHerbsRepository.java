@@ -10,19 +10,19 @@ import com.cast.amanda.primeiraaplicacao.util.AppUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLiteClientRepository implements ClientRepository {
+public class SQLiteHerbsRepository implements HerbsRepository {
 
-    private static SQLiteClientRepository singletonInstance;
+    private static SQLiteHerbsRepository singletonInstance;
 
-    private SQLiteClientRepository(){
+    private SQLiteHerbsRepository(){
         super();
     }
 
-    public static ClientRepository getInstance(){
-    if(SQLiteClientRepository.singletonInstance == null){
-        SQLiteClientRepository.singletonInstance = new SQLiteClientRepository();
+    public static HerbsRepository getInstance(){
+    if(SQLiteHerbsRepository.singletonInstance == null){
+        SQLiteHerbsRepository.singletonInstance = new SQLiteHerbsRepository();
     }
-        return SQLiteClientRepository.singletonInstance;
+        return SQLiteHerbsRepository.singletonInstance;
     }
 
     @Override
